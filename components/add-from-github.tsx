@@ -70,8 +70,9 @@ export default function AddFromGitHub({ onAdd = () => {} }: Props) {
 
       onAdd(project)
       setValue("")
-    } catch (err: any) {
-      setError(err?.message || "Failed to fetch repository")
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to fetch repository';
+      setError(errorMessage);
     } finally {
       setLoading(false)
     }
