@@ -1,18 +1,30 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      'images.unsplash.com',
-      'opengraph.githubassets.com',
-      'github.com',
-      'raw.githubusercontent.com',
-      'avatars.githubusercontent.com'
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'opengraph.githubassets.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'github.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
     ],
   },
-  // Enable React Strict Mode
   reactStrictMode: true,
-  // SWC minification is now the default in newer Next.js versions
-  // No need to explicitly set swcMinify
 };
 
 module.exports = nextConfig;

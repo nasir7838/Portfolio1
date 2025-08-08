@@ -15,6 +15,10 @@ type GitHubRepo = {
   id: number
   name: string
   full_name: string
+  description: string | null
+  homepage: string | null
+  html_url: string
+  language: string | null
 }
 
 function parseGitHubRepo(input: string): { owner: string; repo: string } | null {
@@ -65,7 +69,7 @@ export default function AddFromGitHub({ onAdd = () => {} }: Props) {
         description: repo?.description || "GitHub project",
         image,
         url: repo?.homepage || repo?.html_url || `https://github.com/${parsed.owner}/${parsed.repo}`,
-        tags: [repo?.language].filter(Boolean),
+        tags: repo?.language ? [repo.language] : [],
       }
 
       onAdd(project)
