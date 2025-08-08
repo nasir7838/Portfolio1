@@ -26,7 +26,7 @@ export default function Page() {
           <Hero
             name="MD NASIR ALAM"
             tagline="SOFTWARE ENGINEER, FRONT END & APP DEVELOPER."
-            imageSrc="https://images.unsplash.com/photo-1639762681057-1e7ca5641e53?q=80&w=1200&auto=format&fit=crop"
+            imageSrc="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=1200&auto=format&fit=crop"
           />
         </section>
 

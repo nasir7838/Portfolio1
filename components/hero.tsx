@@ -1,7 +1,9 @@
+import { Image } from '@/components/ui/image';
+
 export default function Hero({
   name = "TAMAL SEN",
   tagline = "SOFTWARE ENGINEER, FRONT END & APP DEVELOPER.",
-  imageSrc = "https://images.unsplash.com/photo-1639762681057-1e7ca5641e53?q=80&w=1200&auto=format&fit=crop",
+  imageSrc = "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=1200&auto=format&fit=crop",
 }: {
   name?: string
   tagline?: string
@@ -21,10 +23,13 @@ export default function Hero({
       />
       {/* 3D cubes image on the right */}
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[52%] max-w-[780px] opacity-90">
-        <img
-          src={imageSrc || "/placeholder.svg"}
+        <Image
+          src={imageSrc}
           alt="Abstract 3D cubes with glowing sphere"
-          className="w-full h-auto object-contain select-none pointer-events-none"
+          width={1200}
+          height={800}
+          className="object-contain select-none pointer-events-none"
+          priority
         />
       </div>
 

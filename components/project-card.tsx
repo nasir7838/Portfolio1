@@ -1,6 +1,7 @@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink } from 'lucide-react'
+import { Image } from "@/components/ui/image"
 import type { Project } from "@/types/project"
 
 export default function ProjectCard({
@@ -17,44 +18,48 @@ export default function ProjectCard({
 }) {
   const { title, description, image, url, tags } = project
   return (
-    <Card className="overflow-hidden bg-white/[0.04] border-white/10 text-white">
+    <Card className="overflow-hidden bg-white/[0.04] border-white/10 text-white hover:bg-white/[0.08] transition-colors duration-300">
       <div className="relative h-44 sm:h-48 md:h-52 w-full bg-white/5">
-        <img
-          src={image || "/placeholder.svg?height=320&width=640&query=project%20screenshot%20ui"}
-          alt={title}
-          className="h-full w-full object-cover"
+        <Image
+          src={image || "/placeholder.svg"}
+          alt={`${title} project screenshot`}
+          width={800}
+          height={450}
+          className="object-cover w-full h-full"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
       </div>
       <CardHeader>
-        <CardTitle className="text-lg">{title}</CardTitle>
-      </CardHeader>
-      <CardContent className="text-sm text-white/70">
-        <p>{description}</p>
-        {tags && tags.length ? (
-          <div className="mt-3 flex flex-wrap gap-2">
-            {tags.map((t) => (
-              <Badge key={t} variant="secondary" className="rounded-md bg-white/10 border-white/10 text-white">
-                {t}
-              </Badge>
-            ))}
-          </div>
-        ) : null}
-      </CardContent>
-      <CardFooter className="mt-auto">
-        {url ? (
+        <CardTitle className="text-lg sm:text-xl md:text-2xl">
           <a
             href={url}
             target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-cyan-300 hover:text-cyan-200"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:text-primary transition-colors"
           >
-            <ExternalLink className="h-4 w-4" />
-            View project
+            {title}
+            <ExternalLink className="w-4 h-4" />
           </a>
-        ) : (
-          <span className="text-sm text-white/60">No link provided</span>
-        )}
-      </CardFooter>
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm sm:text-base text-white/80 line-clamp-3">
+          {description}
+        </p>
+      </CardContent>
+      {tags && tags.length > 0 && (
+        <CardFooter className="flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <Badge
+              key={tag}
+              variant="secondary"
+              className="text-xs sm:text-sm px-2 py-1 bg-white/5 text-white/80"
+            >
+              {tag}
+            </Badge>
+          ))}
+        </CardFooter>
+      )}
     </Card>
   )
 }
