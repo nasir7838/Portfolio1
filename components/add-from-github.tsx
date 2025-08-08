@@ -11,6 +11,12 @@ type Props = {
   onAdd?: (project: Project) => void
 }
 
+type GitHubRepo = {
+  id: number
+  name: string
+  full_name: string
+}
+
 function parseGitHubRepo(input: string): { owner: string; repo: string } | null {
   const trimmed = input.trim()
   // Accept owner/repo
@@ -48,7 +54,7 @@ export default function AddFromGitHub({ onAdd = () => {} }: Props) {
         headers: { Accept: "application/vnd.github+json" },
       })
       if (!repoRes.ok) throw new Error("Repository not found")
-      const repo = await repoRes.json() as any
+      const repo = await repoRes.json() as GitHubRepo
 
       const image = `https://opengraph.githubassets.com/1/${parsed.owner}/${parsed.repo}`
       const id = `gh-${parsed.owner}-${parsed.repo}`
